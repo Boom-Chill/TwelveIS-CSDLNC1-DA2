@@ -1,0 +1,13 @@
+.summary {
+    &--wrapper{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+    }
+
+    &__kl {
+        font-weight: 700;
+        color: #bd2026;
+    }
+}

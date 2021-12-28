@@ -1,0 +1,51 @@
+.find-order {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+      
+      td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+      
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
+
+      &__page {
+        width: 100%;
+        font-size: 16px;
+        color: #008848;
+        border: 1px solid #008848;
+        border-radius: 4px;
+        cursor: pointer;
+        height: 30px;
+        line-height: 30px;
+        margin-top: 1em;
+        padding: 10px 0;
+        transition: 0.4s;
+        margin-bottom: 16px;
+
+        &:hover{
+            background-color: #008848;
+            color: white;
+        }
+    }
+
+
+    &--wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 1em 0;
+    }
+}

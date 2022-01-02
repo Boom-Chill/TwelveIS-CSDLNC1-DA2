@@ -88,7 +88,7 @@ function Login(props) {
                     label='Password'
                     className='customer__item'
                     name='USERPASSWORD'
-                    //type='password'
+                    type='password'
                     onChange={onFormChange}
 
                     required

@@ -30,7 +30,7 @@ const mssql = new sql.ConnectionPool({
   }
 })
 
-const PORT = 5200
+const PORT = 5000
 
 mssql.connect().then(() => {
   app.listen(PORT, () => {
@@ -416,10 +416,12 @@ app.delete('/api/products/:id', async (req, res) => {
       alter table CTHOADON nocheck constraint all
       alter table CTPHIEUXUATHANG nocheck constraint all
       alter table CTPHIEUNHAPHANG nocheck constraint all
+      alter table LSGIASANPHAM nocheck constraint all
       DELETE FROM SANPHAM where SANPHAM.MASP = '${productID}'
       alter table CTHOADON check constraint all
       alter table CTPHIEUXUATHANG check constraint all
       alter table CTPHIEUNHAPHANG check constraint all
+      alter table LSGIASANPHAM check constraint all
       `
     )
 

@@ -10,7 +10,7 @@ các chức năng thống kê doanh thu, số lượng hàng, các mặt hàng b
 # Cách chạy
 Mở 2 terminal <br>
 SERVER: 'cd ./server' -> 'npm start' <br>
-WEB: 'cd ./hoa-yeuthuong-clone' -> 'npm start' <br>
+WEB: 'cd ./hoa-yeu-thuong-clone' -> 'npm start' <br>
 
 # Demo hình ảnh website
 Home <br>

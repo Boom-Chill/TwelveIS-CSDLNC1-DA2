@@ -12,8 +12,6 @@ function ProductList(props) {
     const [page, setPage] = useState(1)
     const products = useSelector((state) => state.products.data)
 
-    //const [products, setProducts] = useState([])
-
     useEffect(() => {
         try {
             axios.get(`${baseUrl}/api/products`, {

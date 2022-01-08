@@ -4,20 +4,14 @@ const app = express()
 const cors = require('cors')
 const generateID = require('./utils/ganerateId.js')
 
-const pad = function(num) { return ('00'+num).slice(-2) };
-
-const dateFormater = (date) => {
-    return date.getUTCFullYear()         + '-' +
-            pad(date.getUTCMonth() + 1)  + '-' +
-            pad(date.getUTCDate())       + ' ' +
-            pad(date.getUTCHours())      + ':' +
-            pad(date.getUTCMinutes())    + ':' +
-            pad(date.getUTCSeconds());
-}
+const pad = function(num) { return ('00'+num).slice(-2) }
 
 function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
+  return Math.floor(Math.random() * max)
 }
+
+
+
 
 
 //config db
@@ -63,48 +57,12 @@ const callInvoiceDetail = async (MaHD) => {
   }
 }
 
-app.get('/api/invoices', async (req, res) => {
-  try {
-    const result = await mssql.request().query(
-      `
-        select HD.MaHD, HD.NgayLap, HD.TongTien
-
-        from HOADON HD
-        join CTHOADON CTHD on HD.MaHD = CTHD.MaHD
-        join SANPHAM SP on SP.MaSP = CTHD.MaSP
-        group by HD.MaHD, HD.NgayLap, HD.TongTien
-      `
-    )
-
-    let productsRes = []
-
-    for (const item of result.recordsets[0]) {
-      const product = {
-        ...item,
-        SanPham: await callInvoiceDetail(item.MaHD),
-      }
-      
-      productsRes = [ ...productsRes, product]
-    }
-
-    res.send(productsRes)
-  } catch (error) {
-    console.log(error)
-  }
-})
 
 
 
 
 
-
-
-
-
-
-
-
-
+//-------------AUTH
 app.post('/api/auth/login', async (req, res) => {
   const userReq = req.body
   try {
@@ -154,10 +112,7 @@ app.post('/api/auth/login', async (req, res) => {
 
 
 
-
-
-
-
+//-----------SUMMARY
 app.get('/api/invoice/summary', async (req, res) => {
   const {month, year} = req.query
   try {
@@ -250,6 +205,9 @@ app.get('/api/products/:id', async (req, res) => {
   }
 })
 
+
+
+//-------------EXPORT
 app.get('/api/exports', async (req, res) => {
   const page = req.query.page
   console.log("🚀 ~ file: index.js ~ line 116 ~ app.get ~ page", page)
@@ -269,6 +227,17 @@ app.get('/api/exports', async (req, res) => {
   }
 })
 
+
+
+
+
+
+
+
+
+
+
+//-------------IMPORT
 app.get('/api/imports', async (req, res) => {
   const page = req.query.page
   try {
@@ -289,7 +258,6 @@ app.get('/api/imports', async (req, res) => {
 
 app.get('/api/imports/:id', async (req, res) => {
   const importID = req.params.id 
-  console.log("🚀 ~ file: index.js ~ line 135 ~ app.get ~ importID", importID)
   try {
       const importDetail = await mssql.request().query(
 
@@ -310,7 +278,6 @@ app.get('/api/imports/:id', async (req, res) => {
 
 app.get('/api/imports/:id', async (req, res) => {
   const importID = req.params.id 
-  console.log("🚀 ~ file: index.js ~ line 135 ~ app.get ~ importID", importID)
   try {
       const importDetail = await mssql.request().query(
 
@@ -381,7 +348,6 @@ app.patch('/api/products/:id', async (req, res) => {
 })
 
 app.post('/api/products', async (req, res) => {
-  console.log('enter')
   const productID = `SP${generateID.generateID(7 , 7)}`
   const product = req.body
   try {
@@ -408,7 +374,6 @@ app.post('/api/products', async (req, res) => {
 app.delete('/api/products/:id', async (req, res) => {
   const productID = req.params.id
   const page = req.query.page
-  console.log("🚀 ~ file: index.js ~ line 101 ~ app.get ~ productID", productID)
   
   try {
     await mssql.request().query(
@@ -455,8 +420,6 @@ app.get('/api/products', async (req, res) => {
   }
 })
 
-
-
 app.get('/api/search', async (req, res) => {
   const search = req.query.search
   const page = req.query.page
@@ -477,7 +440,6 @@ app.get('/api/search', async (req, res) => {
 })
 
 app.post('/api/invoice/upload', async (req, res) => {
-
   const customer = req.body.customer
   const discount = req.body.discount
   const gInvoiceId = generateID.generateID(7 , 7)
@@ -524,10 +486,11 @@ app.post('/api/invoice/upload', async (req, res) => {
   products.forEach((product) => {
     const productID = `'${product.MASP}'`
     insertProductsScript += `insert into CTHOADON values (${inVoiceID}, ${productID}, ${product.SLM}, ${product.GIAGIAM * product.SLM}, ${product.GIAGIAM} ) `
+    insertProductsScript +=  `update SANPHAM set SOLUONG = ${product.SOLUONG - product.SLM} where MASP = '${product.MASP}'`
   })
   
   try {
-    const result = await mssql.request().query(
+    await mssql.request().query(
       insertProductsScript
     )
     res.send({
@@ -604,6 +567,11 @@ app.get('/api/quota', async (req, res) => {
   }
 })
 
+
+
+
+
+//---------QUOTA
 app.patch('/api/quota-branchs', async (req, res) => {
   const id = req.query.id
   const data = req.body.data
@@ -643,6 +611,14 @@ app.patch('/api/quota-staffs', async (req, res) => {
   }
 })
 
+
+
+
+
+
+
+
+//---------MANAGER
 app.patch('/api/manager-discount', async (req, res) => {
   const data = req.body.discount
 
@@ -680,6 +656,9 @@ app.get('/api/discount', async (req, res) => {
 })
 
 
+
+
+//--------- STAFF
 app.get('/api/staff-sales', async (req, res) => {
   try {
       const discount = await mssql.request().query(
@@ -817,6 +796,7 @@ app.get('/api/summary/staff-salary/:id', async (req, res) => {
       const invoices = await mssql.request().query(
       `
       select * from LUONG L where L.MANV = '${id}'
+      order by L.NGAYGHINHAN desc
       `
     )
     res.send(invoices.recordsets[0])

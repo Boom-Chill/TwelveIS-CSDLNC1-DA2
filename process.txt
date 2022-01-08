@@ -1,0 +1,27 @@
++ Dữ liệu, thông tin quy trình cần thiết:
+-	Khách hàng có thể vào ghé thăm website, mua hàng thông qua website. Khi mua khách hàng cần chọn mặt hàng cần mua, cho vào giỏ hàng, sau đó nhập số điện thoại, họ tên, địa chỉ giao hàng, h t. Khách có thể chọn hình thức thanh toán COD hoặc online thông qua thẻ, trường hợp người nhận hàng không phải là người đặt hàng thì sẽ thanh toán trước bằng hình thức online hoặc tới đia chỉ công ty để thanh toán.
+
+-	Sản phẩm để khách hàng chọn có mã sản phẩm, tên sản phẩm,  giá gốc, giá hiện tại, mô tả, hình ảnh, số lượng tồn kho, loại. Mỗi lần sửa giá sản phẩm sẽ lưu thêm ngày sửa để xem diễn biến giá.
+
+-	Khi thanh toán sẽ có hoá đơn bao gồm mã hoá đơn, tổng tiền, người mua, người nhận, thời gian mua, trạng thái, hình thức thanh toán, thông tin những sản phẩm mua: mã sản phẩm, đơn giá, số lượng, giảm giá, thành tiền.
+
+-	Công ty có nhân viên sẽ túc trực để trao đổi khi khách hàng cần trợ giúp trực tuyến, thông tin nhân viên bao gồm: mã nhân viên, tên nhân viên, ngày sinh, số điện thoại, ngày vào công ty, lương theo từng tháng, số ngày đã làm việc theo từng tháng, số lượng khách hàng hỗ trợ, thưởng lương theo từng tháng, chi nhánh làm việc, chức vụ (quản lý, quản trị, null).
+
+-	Công ty có quản lý việc nhập hàng ở từng chi nhánh: mã phiếu nhập hàng, mã nhà cung ứng ,ngày lập, trạng thái, thông tin những sản phẩm nhập: mã sản phẩm, số lượng.
+
+-	Công ty nhận được hàng sẽ nhận kèm một phiếu xuất hàng từ nhà cung ứng gồm có: mã phiếu xuất hàng, mã nhà cung ứng, ngày lập, tổng tiền, thông tin những sản phẩm nhập: mã sản phẩm, số lượng, đơn giá, thành tiền.
+
+-	Mỗi phiếu nhập hàng sẽ được gửi cho nhà cung ứng, nhà cung ứng gồm: Mã nhà cung ứng, tên nhà cung ứng, địa chỉ nhà cung ứng, số điện thoại.
+
+-	Công ty có nhiều chi nhánh offline: Mã chi nhánh, địa chỉ chi nhánh, số điện thoại, mã trưởng chi nhánh (mã nhân viên).
+
+-	Bảng quota để lưu lại quota dounh thu cho chi nhánh, số ngày làm cho nhân viên cần vượt qua, và bảng danh sách các chi nhánh, nhân viên vượt qua được quota này.
+
++ Bổ sung quy trình: 
+Online:
+-	Khách hàng có thể vào ghé thăm website, mua hàng thông qua website. Khi mua khách hàng cần chọn mặt hàng cần mua, cho vào giỏ hàng, nhập thông tin cần thiết, thanh toán.
+-	Nếu khách hàng cần hỗ trợ sẽ có nhân việc túc trực thực hiện hỗ trợ qua chat, điện thoại.
+Offline:
+-	Khi nhận được đơn hàng từ website nhân viên sẽ chuẩn bị hàng. Nhân viên đóng hàng và cập nhật trạng thái đơn hàng thành đã gói hàng sau đó giao cho bên vận chuyển và cập nhật trạng thái đơn hàng thành đang vận chuyển, sau khi vận chuyển , khách đã nhận hàng xong sẽ cập nhật thành thành công, còn khách không nhận sẽ cập nhật thành đã huỷ.
+-	Trạng thái đơn hàng khi được cập nhật lên thành công sẽ thêm tổng tiền vào doanh thu, còn đã huỷ sẽ thêm lại số lượng sản phẩm vào lại hàng tồn.
+-	Nhân viên đi làm sẽ được tích thẻ và lưu lại ngày làm.

@@ -180,7 +180,8 @@ export function StaffRollUp(props) {
                 setProducts(res.data)
                 const dateResNow = new Date(res.data[0]?.NGAYGHINHAN)
                 const dateNow = new Date()
-                if (dateResNow.getDate() <= dateNow.getDate() && dateResNow.getMonth() <= dateNow.getMonth() && dateResNow.getYear() <= dateNow.getYear()) {
+                console.log("🚀 ~ file: Staff.jsx ~ line 182 ~ useEffect ~ res.data[0]?.NGAYGHINHAN", dateNow.getDate())
+                if (dateResNow.getDate() >= dateNow.getDate() && dateResNow.getMonth() <= dateNow.getMonth() && dateResNow.getYear() <= dateNow.getYear()) {
                     setIsRollUp(true)
                 }
             })

@@ -24,6 +24,6 @@ và còn nhiều chức năng khác
 # Lưu ý
 Website [hoayeuthuong.com](https://hoayeuthuong.com/) đã thay đổi UI :cry:
 
-# Chi tiết cái đặt, config server, database nếu chạy local
+# Chi tiết cài đặt, config server, database nếu chạy local
 Đọc README.md ở link bên dưới <br>
 [Nhấn vào đây](https://github.com/boom-chill/TwelveIS-CSDLNC1-DA1)

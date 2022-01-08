@@ -23,4 +23,4 @@ và còn nhiều chức năng khác
 
 # Chi tiết cái đặt, config server, database nếu chạy local
 Đọc README.md ở link bên dưới <br>
-[a link](https://github.com/boom-chill/TwelveIS-CSDLNC1-DA1)
+[Nhấn vào đây](https://github.com/boom-chill/TwelveIS-CSDLNC1-DA1)
